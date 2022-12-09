@@ -21,7 +21,7 @@ app.use("/", userController);
 
 let PORT = 3000;
 if (process.env.PORT) {
-  PORT = process.ENV.PORT;
+  PORT = process.env.PORT;
 }
 app.listen(PORT, () => {
   console.log("listening");
