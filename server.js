@@ -11,9 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(
   cors({
-    origin: "*",
-    credentialst: true,
-    allowedHeaders: true,
+    origin: "http://localhost:3000",
+    credentials: true,
   })
 );
 app.use(
