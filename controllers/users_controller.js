@@ -5,7 +5,7 @@ const router = express.Router();
 const User = require("../models/users");
 
 router.get("/", (req, res) => {
-  res.json("hello");
+  res.send(req.session.currentUser);
 });
 
 router.post("/createaccount", (req, res) => {
