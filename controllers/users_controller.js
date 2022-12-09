@@ -17,7 +17,9 @@ router.post("/createaccount", (req, res) => {
     if (err) {
       res.json(err.message);
     } else {
-      res.json(createdUser);
+      req.session.currentUser = createdUser;
+
+      res.json(req.session.currentUser);
     }
   });
 });
@@ -32,7 +34,8 @@ router.put("/login", (req, res) => {
           message: "We could not find that email, please try again.",
         });
       } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-        res.json({ user: foundUser });
+        req.session.currentUser = createdUser;
+        res.json(req.session.currentUser);
       } else {
         res.json({
           message: "We could not find that email, please try again.",
