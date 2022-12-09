@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: "*",
     credentialst: true,
-    allowedHeaders: "*",
+    allowedHeaders: true,
   })
 );
 app.use(
