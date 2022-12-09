@@ -38,7 +38,7 @@ router.put("/login", (req, res) => {
         res.json(req.session.currentUser);
       } else {
         res.json({
-          message: "We could not find that email, please try again.",
+          message: "Password was incorrect, please try again.",
         });
       }
     }
