@@ -17,7 +17,6 @@ router.post("/createaccount", (req, res) => {
     if (err) {
       res.json(err.message);
     } else {
-      res.header("Access-Control-Allow-Origin", "true");
       req.session.currentUser = createdUser;
 
       res.json(req.session.currentUser);
@@ -35,7 +34,6 @@ router.put("/login", (req, res) => {
           message: "We could not find that email, please try again.",
         });
       } else if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-        res.header("Access-Control-Allow-Origin", "true");
         req.session.currentUser = createdUser;
         res.json(req.session.currentUser);
       } else {
