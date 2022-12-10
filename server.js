@@ -11,7 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "https://admirable-froyo-7c545e.netlify.app",
+    ],
     credentials: true,
   })
 );
