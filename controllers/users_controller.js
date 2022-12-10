@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const users = require("../models/users");
 const router = express.Router();
 const User = require("../models/users");
@@ -45,6 +47,10 @@ const User = require("../models/users");
 //   });
 // });
 
+const createToken = (_id) => {
+  return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
+};
+
 router.post("/login", async (req, res) => {
   res.json({ mssg: "login user" });
 });
@@ -54,7 +60,10 @@ router.post("/createaccount", async (req, res) => {
   try {
     const user = await User.signup(firstname, lastname, email, password);
 
-    res.status(200).json({ email, user });
+    //create a token
+    const token = createToken(user._id);
+
+    res.status(200).json({ email, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
