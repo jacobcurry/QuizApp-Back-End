@@ -89,16 +89,11 @@ userSchema.statics.updateUser = async function (
   email
 ) {
   //validation
-  if (!email || !password || !firstname || !lastname) {
+  if (!email || !firstname || !lastname) {
     throw Error("All fields must be filled");
   }
   if (!validator.isEmail(email)) {
     throw Error("Email is not valid");
-  }
-  if (!validator.isStrongPassword(password)) {
-    throw Error(
-      "Password not strong enough, must be a minimum of eight characters and must contain at least one number and one symbol "
-    );
   }
 
   const exists = await this.findOne({ email });
