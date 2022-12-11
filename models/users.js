@@ -16,7 +16,7 @@ userSchema.statics.signup = async function (
   password
 ) {
   //validation
-  if (!email || !password) {
+  if (!email || !password || !firstname || !lastname) {
     throw Error("All fields must be filled");
   }
   if (!validator.isEmail(email)) {
@@ -65,6 +65,56 @@ userSchema.statics.login = async function (email, password) {
   }
 
   return user;
+};
+
+//static getuser info method
+userSchema.statics.getUser = async function (email) {
+  const user = await this.findOne({ email });
+
+  return user;
+};
+
+//static method delete user
+userSchema.statics.deleteUser = async function (email) {
+  const deletedUser = await this.findOneAndDelete({ email });
+
+  return deletedUser;
+};
+
+//static method update user
+userSchema.statics.updateUser = async function (
+  emailParam,
+  firstname,
+  lastname,
+  email,
+  password
+) {
+  //validation
+  if (!email || !password || !firstname || !lastname) {
+    throw Error("All fields must be filled");
+  }
+  if (!validator.isEmail(email)) {
+    throw Error("Email is not valid");
+  }
+  if (!validator.isStrongPassword(password)) {
+    throw Error(
+      "Password not strong enough, must be a minimum of eight characters and must contain at least one number and one symbol "
+    );
+  }
+
+  const exists = await this.findOne({ email });
+  if (exists) {
+    throw Error("Email already exists");
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(password, salt);
+
+  const updatedUser = await this.findOneAndUpdate(
+    { emailParam },
+    { firstname, lastname, email, password: hash }
+  );
+  return updatedUser;
 };
 
 module.exports = mongoose.model("User", userSchema);
