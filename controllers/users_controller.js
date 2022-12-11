@@ -33,14 +33,13 @@ router.delete("/:email", async (req, res) => {
 
 router.put("/:email", async (req, res) => {
   const emailParam = req.params.email;
-  const { firstname, lastname, email, password } = req.body;
+  const { firstname, lastname, email } = req.body;
   try {
     const updatedUser = await User.updateUser(
       emailParam,
       firstname,
       lastname,
-      email,
-      password
+      email
     );
     res.status(200).json(updatedUser);
   } catch (error) {

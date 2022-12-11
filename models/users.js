@@ -86,8 +86,7 @@ userSchema.statics.updateUser = async function (
   emailParam,
   firstname,
   lastname,
-  email,
-  password
+  email
 ) {
   //validation
   if (!email || !password || !firstname || !lastname) {
@@ -104,15 +103,12 @@ userSchema.statics.updateUser = async function (
 
   const exists = await this.findOne({ email });
   if (exists) {
-    throw Error("Email already exists");
+    throw Error("Email must be different");
   }
-
-  const salt = await bcrypt.genSalt(10);
-  const hash = await bcrypt.hash(password, salt);
 
   const updatedUser = await this.findOneAndUpdate(
     { emailParam },
-    { firstname, lastname, email, password: hash }
+    { firstname, lastname, email }
   );
   return updatedUser;
 };
