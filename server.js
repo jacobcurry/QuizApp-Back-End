@@ -24,10 +24,7 @@ app.use(methodOverride("_method"));
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://admirable-froyo-7c545e.netlify.app",
-    ],
+    origin: ["http://localhost:3000", "https://quiz-mern.netlify.app"],
     credentials: true,
   })
 );
