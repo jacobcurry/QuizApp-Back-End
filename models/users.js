@@ -103,8 +103,7 @@ userSchema.statics.updateUser = async function (
 
   const updatedUser = await this.findOneAndUpdate(
     { email: emailParam },
-    { firstname, lastname, email },
-    { new: true }
+    { firstname, lastname, email }
   );
   return updatedUser;
 };
