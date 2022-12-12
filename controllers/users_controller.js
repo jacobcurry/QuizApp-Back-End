@@ -41,7 +41,10 @@ router.put("/:email", async (req, res) => {
       lastname,
       email
     );
-    res.status(200).json(updatedUser);
+
+    const token = createToken(user._id);
+
+    res.status(200).json(updatedUser.email, token);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
