@@ -1,6 +1,6 @@
 const express = require("express");
 const Quizzes = require("../models/userQuizzes");
-const router = express.router();
+const router = express.Router();
 
 router.get("/:email", async (req, res) => {
   const email = req.params.email;
