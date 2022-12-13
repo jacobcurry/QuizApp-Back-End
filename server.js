@@ -24,6 +24,9 @@ mongoose.connect(process.env.MONGO_URI, () => {
 // User Controller
 const userController = require("./controllers/users_controller");
 app.use("/", userController);
+// Quiz Data Controller
+const quizDataController = require("./controllers/quizData_controller");
+app.use("/quiz", quizDataController);
 
 let PORT = 3000;
 if (process.env.PORT) {
