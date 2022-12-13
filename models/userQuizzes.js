@@ -22,7 +22,7 @@ userQuizSchema.statics.postQuiz = async function (
     throw Error("all fields must be present");
   }
 
-  const quizData = await this.create({
+  const returnedQuizData = await this.create({
     email,
     quizData,
     correctAnswers,
@@ -30,7 +30,7 @@ userQuizSchema.statics.postQuiz = async function (
     score,
   });
 
-  return quizData;
+  return returnedQuizData;
 };
 
 userQuizSchema.statics.getQuizData = async function (email) {
