@@ -40,7 +40,7 @@ userQuizSchema.statics.getQuizData = async function (email) {
 };
 
 userQuizSchema.statics.deleteQuizData = async function (id) {
-  const deletedQuiz = await this.findOneAndDelete({ id });
+  const deletedQuiz = await this.findOneAndDelete({ _id: id });
 
   return deletedQuiz;
 };
