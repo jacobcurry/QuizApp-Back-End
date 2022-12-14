@@ -32,9 +32,9 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const updatedQuizzes = await Quizzes.updateMany(emailParam, email);
+    const deletedQuizData = await Quizzes.deleteQuizData(id);
 
-    res.status(200).json(updatedQuizzes);
+    res.status(200).json(deletedQuizData);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -43,6 +43,13 @@ router.delete("/:id", async (req, res) => {
 router.put("/:email", async (req, res) => {
   const emailParam = req.params.email;
   const { email } = req.body;
+  try {
+    const updatedQuizzes = await Quizzes.updateMany(emailParam, email);
+
+    res.status(200).json(updatedQuizzes);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
 module.exports = router;
