@@ -45,4 +45,13 @@ userQuizSchema.statics.deleteQuizData = async function (id) {
   return deletedQuiz;
 };
 
+userQuizSchema.statics.updateEmail = async function (emailParam, email) {
+  const updatedQuizzes = await this.updateMany(
+    { emailParam },
+    { $set: { email: email } }
+  );
+
+  return updatedQuizzes;
+};
+
 module.exports = mongoose.model("Quiz", userQuizSchema);
