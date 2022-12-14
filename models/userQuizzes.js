@@ -47,7 +47,7 @@ userQuizSchema.statics.deleteQuizData = async function (id) {
 
 userQuizSchema.statics.updateEmail = async function (emailParam, email) {
   const updatedQuizzes = await this.updateMany(
-    { emailParam },
+    { email: emailParam },
     { $set: { email: email } }
   );
 
