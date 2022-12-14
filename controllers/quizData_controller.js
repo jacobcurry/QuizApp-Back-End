@@ -44,7 +44,7 @@ router.put("/:email", async (req, res) => {
   const emailParam = req.params.email;
   const { email } = req.body;
   try {
-    const updatedQuizzes = await Quizzes.updateMany(emailParam, email);
+    const updatedQuizzes = await Quizzes.updateEmail(emailParam, email);
 
     res.status(200).json(updatedQuizzes);
   } catch (error) {
