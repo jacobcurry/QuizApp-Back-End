@@ -11,7 +11,7 @@ app.use(methodOverride("_method"));
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://quiz-mern.netlify.app"],
+    origin: ["http://localhost:3000", "https://ex-quiz-ite.netlify.app"],
     credentials: true,
   })
 );
