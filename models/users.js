@@ -97,8 +97,10 @@ userSchema.statics.updateUser = async function (
   }
 
   const exists = await this.findOne({ email });
-  if (exists) {
-    throw Error("Email must be different");
+  if (emailParam !== email) {
+    if (exists) {
+      throw Error("Email already in use, please choose another one");
+    }
   }
 
   const updatedUser = await this.findOneAndUpdate(
